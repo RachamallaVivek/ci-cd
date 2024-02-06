@@ -1,0 +1,22 @@
+name: run test cases
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  run-testcases:
+    runs-on: ubuntu-latest
+    name: Test Cases
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
