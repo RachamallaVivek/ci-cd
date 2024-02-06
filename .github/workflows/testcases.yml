@@ -8,7 +8,7 @@ on:
 
 jobs:
   run-testcases:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.4
     name: Test Cases
 
     steps:
