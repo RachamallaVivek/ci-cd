@@ -1,4 +1,5 @@
 name: run test cases
+run-name: workflow triggered by ${{ github.actor }}
 
 on:
   push:
@@ -7,16 +8,24 @@ on:
   workflow_dispatch:
 
 jobs:
+  read-outpits:
+    runs-on: ubuntu-20.4
+
+    steps:
+      - run: echo ${{ jobs.run-testcases.outputs.test_output }}
+     
   run-testcases:
     runs-on: ubuntu-20.4
-    name: Test Cases
+    outputs:
+      test_output: ${{ steps.tests.outputs }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+        
       - name: Install dependencies
         run: npm install
-
-      - name: Run tests
+        
+      - id: tests
+        name: Run tests
         run: npm test
