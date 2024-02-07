@@ -9,8 +9,8 @@ on:
 
 jobs:
   read-outpits:
-    needs: [ run-testcases ]
     runs-on: ubuntu-20.4
+    needs: [ run-testcases ]
 
     steps:
       - run: echo ${{ needs.run-testcases.outputs.test_output }}
