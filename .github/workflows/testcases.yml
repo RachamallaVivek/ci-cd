@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-20.4
 
     steps:
-      - run: echo ${{ jobs.run-testcases.outputs.test_output }}
+      - run: echo ${{ needs.run-testcases.outputs.test_output }}
      
   run-testcases:
     runs-on: ubuntu-20.4
