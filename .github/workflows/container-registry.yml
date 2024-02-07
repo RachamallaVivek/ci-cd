@@ -1,0 +1,15 @@
+name: docker action file
+
+on: [ push ]
+
+jobs:
+  run-docker-container-registry-image:
+   runs-on: ubuntu-20.4
+   steps:
+     - name: checkout to repository
+       uses: actions/checkout@v2
+   container:
+    image: ghcr.io/test-organization-package/ci-cd-fend:latest
+    credentials:
+      username: ${{ github.actor }}
+      password: ${{ secrets.github_token }}
