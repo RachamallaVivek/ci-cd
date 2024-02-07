@@ -9,6 +9,7 @@ on:
 
 jobs:
   read-outpits:
+    needs: [ run-testcases ]
     runs-on: ubuntu-20.4
 
     steps:
