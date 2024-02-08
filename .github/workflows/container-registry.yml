@@ -9,7 +9,7 @@ jobs:
      - name: checkout to repository
        uses: actions/checkout@v2
    container:
-    image: ghcr.io/test-organization-package/ci-cd-fend:latest
+    image: ghcr.io/test-organization-package/ci-cd-fend:1.0
     credentials:
       username: ${{ github.actor }}
       password: ${{ secrets.CONTAINER_REGISTRY_TOKEN }}
