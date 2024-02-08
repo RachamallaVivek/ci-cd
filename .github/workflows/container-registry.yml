@@ -4,7 +4,7 @@ on: [ push ]
 
 jobs:
   run-docker-container-registry-image:
-   runs-on: ubuntu-20.04
+   runs-on: ${{ vars.RUNNER_IMAGE }}
    steps:
      - name: checkout to repository
        uses: actions/checkout@v2
