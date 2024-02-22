@@ -25,5 +25,5 @@ jobs:
     steps:
       - name: After greet
         env:
-          USERNAME: ${{ greet.outputs.output1 }}
+          USERNAME: ${{ needs.greet.outputs.output1 }}
         run: echo "$USERNAME grating u again" 
