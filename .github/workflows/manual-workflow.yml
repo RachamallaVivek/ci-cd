@@ -13,6 +13,16 @@ on:
 jobs:
   greet:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.greet.outputs.output1 }}
     steps:
       - name: Greet
         run: echo "Hello, ${{ github.event.inputs.name }}! You are ${{ github.event.inputs.age }} years old."
+
+  after-greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: After greet
+        env:
+          USERNAME: ${{ greet.outputs.output1 }}
+        run: echo "$USERNAME grating u again" 
