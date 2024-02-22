@@ -35,7 +35,7 @@ jobs:
              echo "all-greets=$GREETINGS now happy birthday" >> $GITHUB_OUTPUT
 
   show-all:
-    needs: after-greet
+    needs: full-greet
     runs-on: ubuntu-latest
     steps:
       - name: Display all greetings
