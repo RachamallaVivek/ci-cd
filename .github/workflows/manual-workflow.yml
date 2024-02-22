@@ -20,6 +20,7 @@ jobs:
         run: echo "Hello, ${{ github.event.inputs.name }}! You are ${{ github.event.inputs.age }} years old."
 
   after-greet:
+    needs: greet
     runs-on: ubuntu-latest
     steps:
       - name: After greet
