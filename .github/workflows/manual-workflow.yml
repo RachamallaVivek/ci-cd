@@ -25,8 +25,31 @@ jobs:
   after-greet:
     needs: greet
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.greetfile.outputs.all-greets }}
+    strategy:
+      matrix:
+        name: [ vivek, rohit, laddu ]
+        surname: [ rachamalla, ammababoi ]
+        exclude:
+         - name: laddu
+           surname: rachamalla
     steps:
       - name: After greet
+        id: greetfile
         env:
           GREETINGS: ${{ needs.greet.outputs.greetings }}
-        run: echo "$GREETINGS greeting you again"
+        run: |
+          echo "$GREETINGS now happy birthday" >> greeting.txt &&
+          echo "$all-greets=$( cat greetin.yxy )" >> $GITHUB_OUTPUT
+  shoew-all:
+    needs: after-greet
+    runs-on: ubantu-latest
+    steps:
+      - name: display all greetings
+        env:
+          ALL_GREETS: ${{ needs.after-greet.outputs.output1 }}
+        run: echo "$ALL_GREETS"
+        
+
+
