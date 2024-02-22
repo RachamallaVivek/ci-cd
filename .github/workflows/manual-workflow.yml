@@ -32,7 +32,7 @@ jobs:
           env:
             GREETINGS: ${{ needs.greet.outputs.greetings }}
           run: |
-             echo "all-greets=test, $GREETINGS now happy birthday" >> $GITHUB_OUTPUT
+             echo "all-greets=test,$(echo "$GREETINGS now happy birthday")" >> $GITHUB_OUTPUT
 
   show-all:
     needs: full-greet
