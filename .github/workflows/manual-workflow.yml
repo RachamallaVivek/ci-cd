@@ -19,10 +19,9 @@ jobs:
       - name: Greet
         id: greet
         run: |
-          greetings="Hello, ${{ github.event.inputs.name }}! You are ${{ github.event.inputs.age }} years old."
-          echo "::set-output name=greetings::$greetings"
+          echo greetings="Hello, ${{ github.event.inputs.name }}! You are ${{ github.event.inputs.age }} years old." >> &GITHUB_OUTPUT
 
-  after-greet:
+  full-greet:
       needs: greet
       runs-on: ubuntu-latest
       outputs:
