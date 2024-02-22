@@ -44,7 +44,7 @@ jobs:
           echo "$all-greets=$( cat greetin.yxy )" >> $GITHUB_OUTPUT
   shoew-all:
     needs: after-greet
-    runs-on: ubantu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: display all greetings
         env:
