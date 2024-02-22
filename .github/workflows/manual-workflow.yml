@@ -35,6 +35,8 @@ jobs:
          - name: laddu
            surname: rachamalla
     steps:
+      - name: create file
+        run: touch greetings.txt
       - name: After greet
         id: greetfile
         env:
@@ -42,6 +44,8 @@ jobs:
         run: |
           echo "$GREETINGS now happy birthday" >> greetings.txt &&
           echo "$all-greets=$( cat greetings.txt )" >> $GITHUB_OUTPUT
+      - name: display test
+        run: cat greetings.txt
   shoew-all:
     needs: after-greet
     runs-on: ubuntu-latest
