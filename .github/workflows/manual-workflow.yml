@@ -23,36 +23,28 @@ jobs:
           echo "::set-output name=greetings::$greetings"
 
   after-greet:
-    needs: greet
-    runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.greetfile.outputs.all-greets }}
-    strategy:
-      matrix:
-        name: [ vivek, rohit, laddu ]
-        surname: [ rachamalla, ammababoi ]
-        exclude:
-         - name: laddu
-           surname: rachamalla
-    steps: 
-      - name: After greet
-        id: greetfile
-        env:
-          GREETINGS: ${{ needs.greet.outputs.greetings }}
-        run: |
-          echo "$GREETINGS now happy birthday" >> greetings.txt &&
-          echo "$all-greets=$( cat greetings.txt )" >> $GITHUB_OUTPUT
-      - name: display test
-        run: cat greetings.txt
-        
-  shoew-all:
+      needs: greet
+      runs-on: ubuntu-latest
+      outputs:
+        output1: ${{ steps.greetfile.outputs.all-greets }}
+      steps:
+        - name: After greet
+          id: greetfile
+          env:
+            GREETINGS: ${{ needs.greet.outputs.greetings }}
+          run: |
+             echo "$GREETINGS now happy birthday" >> greeting.txt
+             echo "::set-output name=all-greets::$(cat greeting.txt)"
+
+  show-all:
     needs: after-greet
     runs-on: ubuntu-latest
     steps:
-      - name: display all greetings
+      - name: Display all greetings
         env:
           ALL_GREETS: ${{ needs.after-greet.outputs.output1 }}
         run: echo "$ALL_GREETS"
+
         
 
 
