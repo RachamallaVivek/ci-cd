@@ -14,10 +14,13 @@ jobs:
   greet:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.greet.outputs }}
+      greetings: ${{ steps.greet.outputs.greetings }}
     steps:
       - name: Greet
-        run: echo "Hello, ${{ github.event.inputs.name }}! You are ${{ github.event.inputs.age }} years old."
+        id: greet
+        run: |
+          greetings="Hello, ${{ github.event.inputs.name }}! You are ${{ github.event.inputs.age }} years old."
+          echo "::set-output name=greetings::$greetings"
 
   after-greet:
     needs: greet
@@ -25,5 +28,5 @@ jobs:
     steps:
       - name: After greet
         env:
-          USERNAME: ${{ needs.greet.outputs.output1 }}
-        run: echo "$USERNAME grating u again" 
+          GREETINGS: ${{ needs.greet.outputs.greetings }}
+        run: echo "$GREETINGS greeting you again"
