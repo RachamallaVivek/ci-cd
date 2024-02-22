@@ -34,9 +34,7 @@ jobs:
         exclude:
          - name: laddu
            surname: rachamalla
-    steps:
-      - name: create file
-        run: touch greetings.txt
+    steps: 
       - name: After greet
         id: greetfile
         env:
