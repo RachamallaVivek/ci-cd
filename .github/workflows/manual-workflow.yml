@@ -40,7 +40,7 @@ jobs:
     steps:
       - name: Display all greetings
         env:
-          ALL_GREETS: ${{ needs.after-greet.outputs.output1 }}
+          ALL_GREETS: ${{ needs.full-greet.outputs.output1 }}
         run: echo "$ALL_GREETS"
 
         
