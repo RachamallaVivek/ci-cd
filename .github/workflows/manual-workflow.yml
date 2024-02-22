@@ -33,8 +33,7 @@ jobs:
           env:
             GREETINGS: ${{ needs.greet.outputs.greetings }}
           run: |
-             echo "$GREETINGS now happy birthday" >> greeting.txt
-             echo "::set-output name=all-greets::$(cat greeting.txt)"
+             echo "all-greets=$GREETINGS now happy birthday" >> $GITHUB_OUTPUT
 
   show-all:
     needs: after-greet
