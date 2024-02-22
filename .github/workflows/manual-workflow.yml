@@ -44,6 +44,7 @@ jobs:
           echo "$all-greets=$( cat greetings.txt )" >> $GITHUB_OUTPUT
       - name: display test
         run: cat greetings.txt
+        
   shoew-all:
     needs: after-greet
     runs-on: ubuntu-latest
